@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow — Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">✓</div>
+        <div>
+          <strong>Task<span>Flow</span></strong>
+          <small>Get things done</small>
+        </div>
+      </div>
+
+      <nav class="nav" id="nav">
+        <button class="active" data-view="all">
+          ⌂ <span>All Tasks</span>
+          <span class="count" id="nav-all">0</span>
+        </button>
+        <button data-view="today">
+          ▣ <span>Today</span>
+          <span class="count" id="nav-today">0</span>
+        </button>
+        <button data-view="upcoming">
+          ◷ <span>Upcoming</span>
+          <span class="count" id="nav-upcoming">0</span>
+        </button>
+        <button data-view="completed">
+          ◉ <span>Completed</span>
+          <span class="count" id="nav-completed">0</span>
+        </button>
+        <button data-view="important">
+          ★ <span>Important</span>
+          <span class="count" id="nav-important">0</span>
+        </button>
+      </nav>
+
+      <div>
+        <div class="side-heading">
+          My Lists
+          <button class="add-list" id="addList" title="Add category">＋</button>
+        </div>
+        <div id="categoryList"></div>
+      </div>
+
+      <div class="side-bottom">
+        <button class="list-item" id="clearDone">
+          ⚙ <span>Clear completed</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="heading">
+          <h1 id="pageTitle">All Tasks</h1>
+          <p id="summary">Keep your day moving, one task at a time.</p>
+        </div>
+
+        <label class="search">
+          <span>⌕</span>
+          <input id="search" placeholder="Search tasks..."
+                 aria-label="Search tasks">
+        </label>
+
+        <button class="theme" id="theme" title="Toggle theme">☼</button>
+      </header>
+
+      <div class="layout">
+        <section>
+          <form class="composer" id="taskForm">
+            <input id="taskTitle"
+                   placeholder="What needs to be done?"
+                   maxlength="120" required
+                   aria-label="Task title">
+
+            <select id="category" aria-label="Category"></select>
+
+            <input id="dueDate" type="date"
+                   aria-label="Due date" title="Due date">
+
+            <select id="priority" aria-label="Priority">
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+            </select>
+
+            <button class="primary" type="submit" id="submitBtn">
+              ＋ Add Task
+            </button>
+          </form>
+
+          <div class="tabs" id="tabs">
+            <button class="active" data-filter="all">All</button>
+            <button data-filter="active">Active</button>
+            <button data-filter="completed">Completed</button>
+            <button data-filter="important">★ Important</button>
+          </div>
+
+          <div id="tasks"></div>
+        </section>
+
+        <aside class="right">
+          <div class="card">
+            <h3>Today's Progress</h3>
+            <div class="progress-wrap">
+              <div class="ring" id="ring">
+                <div>
+                  <span id="progressText">0/0</span>
+                  <small>tasks</small>
+                </div>
+              </div>
+            </div>
+            <div class="stat">
+              <i class="stat-dot"></i>
+              Completed <b id="todayDone">0</b>
+            </div>
+            <div class="stat">
+              <i class="stat-dot" style="background:#667c9e"></i>
+              Remaining <b id="todayRemaining">0</b>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Quick Stats</h3>
+            <div class="stat">
+              <i class="stat-dot"></i>
+              Total Tasks <b id="total">0</b>
+            </div>
+            <div class="stat">
+              <i class="stat-dot green"></i>
+              Completed <b id="done">0</b>
+            </div>
+            <div class="stat">
+              <i class="stat-dot amber"></i>
+              Active <b id="active">0</b>
+            </div>
+            <div class="stat">
+              <i class="stat-dot" style="background:var(--red)"></i>
+              Overdue <b id="overdue">0</b>
+            </div>
+          </div>
+
+          <div class="card quote-card">
+            <div class="quote">
+              Small steps every day lead to big results.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
