@@ -6,3 +6,6 @@ A simple task management application.
 - Create tasks
 - Manage daily tasks
 - Track task completion
+
+## Project status
+   Currently under development
